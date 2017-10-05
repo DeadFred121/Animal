@@ -1,1 +1,26 @@
-<%= current_user.email %>
+<%= @user.email %>
+
+<% if current_user.has_role? :Doggo %>
+  <p>Doggo</p>
+  <img src="https://img.buzzfeed.com/buzzfeed-static/static/2017-03/30/13/enhanced/buzzfeed-prod-fastlane-03/enhanced-7144-1490894366-7.png?downsize=715:*&output-format=auto&output-quality=auto" alt="Doggo">
+<% elsif current_user.has_role? :Cyat %>
+  <p>Cyat</p>
+  <img src="http://www.telegraph.co.uk/content/dam/news/2017/06/06/TELEMMGLPICT000129549962-xlarge_trans_NvBQzQNjv4BqpVlberWd9EgFPZtcLiMQfyf2A9a6I9YchsjMeADBa08.jpeg" alt="Cyat">
+<% elsif current_user.has_role? :Birb %>
+  <p>Birb</p>
+  <img src="http://i.imgur.com/kIWteHX.jpg" alt="Birb">
+<% end %>
+
+
+<h3>Other Users:</h3>
+<% @users.each do |user| %>
+  <%= user.email %>
+<% end %>
+
+<h3>Filter Users:</h3>
+
+<%= link_to 'Doggos', root_path(role: "Doggo") %>
+<%= link_to 'Cyats', root_path(role: "Cyat") %>
+<%= link_to 'Birbs', root_path(role: "Birb") %>
+<br><br>
+<%= link_to 'Logout', destroy_user_session_path,  method: :delete %>
